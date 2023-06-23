@@ -13,7 +13,7 @@ void addCarToInventory(CarInventory* inventory, Car* car)
         return;
     }
     
-     //Add the Car to the Inventory
+     //Add the Car to the Inventory.
      if (inventory->head == NULL)
      {
         inventory->head = newNode;
@@ -57,7 +57,6 @@ void printCarInventory(CarInventory* inventory)
         currNode = currNode->next;
 
     }
-
 
 }
 

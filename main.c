@@ -6,7 +6,7 @@
 
 int main()
 {
-    //Inventory 
+    //Inventory.
    CarInventory* HyundaiInventory = createCarInventory();
    Car* Hyundai001 = createCar("Hyundai", "SONATA", "SPORT", "DarkRed", 2017);
    Car* Hyundai002 = createCar("Hyundai", "SONATA", "SPORT", "White", 2018);

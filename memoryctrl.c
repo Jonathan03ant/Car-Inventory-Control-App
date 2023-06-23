@@ -173,7 +173,7 @@ CarInventory* createCarInventory ()
 
 }
 
-//Function 12))
+//Function 12)).
 void freeCarInventory(CarInventory* inventory)
 {
     if (inventory == NULL)
