@@ -5,8 +5,8 @@ typedef struct
 {
     char* brandName;
     char* brandModel;
-    char* color;
     char* trimLevel;
+    char* color;
     int makeYear;
 }GeneralInfo;
 
@@ -32,17 +32,17 @@ typedef struct {
     CarStatus* carStatus;
 } Car;
 
-typedef struct Node
+typedef struct CarNode
 {
-    Car* data
-    struct Node* prev;
-    struct Node* next;
-} Node;
+    Car* data;
+    struct CarNode* prev;
+    struct CarNode* next;
+} CarNode;
 
 typedef struct 
 {
-    Node* head;
-    Node* tail;    
+    CarNode* head;
+    CarNode* tail;    
 } CarInventory;
 
 /*
@@ -50,6 +50,23 @@ typedef struct
 */
 
 GeneralInfo* createGeneralInfo ();
+void freeGeneralInfo(GeneralInfo*);
+
 MechanicalInfo* createMechanicalInfo ();
+void freeMechanicalInfo (MechanicalInfo*);
+
 CarStatus* createCarStatus ();
-Car* createCar ();
+void freeCarStatus(CarStatus*);
+
+Car* createCar(const char*, const char*, const char*, const char*, int);
+void freeCar (Car*);
+
+CarNode* createCarNode (Car*);
+void freeCarNode(CarNode*);
+
+CarInventory* createCarInventory ();
+void freeCarInventory(CarInventory*);
+
+void addCarToInventory (CarInventory*, Car*);
+
+void printCarInventory(CarInventory*);
