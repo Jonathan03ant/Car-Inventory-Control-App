@@ -3,7 +3,11 @@
 #include <stdlib.h>
 #include "defs.h"
 
-//Functiion 1))
+/*
+Functiion mctrl1
+    Dynamically Allocates Memory for A Car's General Information
+    Set the fields to NULL.
+*/
 GeneralInfo* createGeneralInfo()
 {
     GeneralInfo* info = (GeneralInfo*)malloc(sizeof(GeneralInfo));
@@ -26,7 +30,10 @@ GeneralInfo* createGeneralInfo()
     
 }
 
-//Function 2))
+/*
+Functiion mctrl2
+    Frees The memory of General Information passed as prm; created by createGeneralInfo())
+*/
 void freeGeneralInfo(GeneralInfo* info)
 {
     if (info ==  NULL)
@@ -35,7 +42,11 @@ void freeGeneralInfo(GeneralInfo* info)
 
 }
 
-//Function 3))
+/*
+Functiion mctrl3
+    Dynamically Allocates Memory for A Car's Mechanical Information
+    Set the fields to NULL.
+*/
 MechanicalInfo* createMechanicalInfo()
 {
     MechanicalInfo* info = (MechanicalInfo*)malloc(sizeof(MechanicalInfo));
@@ -54,7 +65,10 @@ MechanicalInfo* createMechanicalInfo()
     return info;
 }
 
-//Function 4))
+/*
+Functiion mctrl4
+    Frees The memory of Mechanical Information passed as prm; created by createMechanicalInfo()
+*/
 void freeMechanicalInfo (MechanicalInfo* info)
 {
     if (info == NULL)
@@ -62,7 +76,11 @@ void freeMechanicalInfo (MechanicalInfo* info)
     free(info);
 }
 
-//Function 5))
+/*
+Functiion mctrl5
+    Dynamically Allocates Memory for A Car's Status Information
+    Set the fields to NULL.
+*/
 CarStatus* createCarStatus()
 {
     CarStatus* status = (CarStatus*)malloc(sizeof(CarStatus));
@@ -82,7 +100,10 @@ CarStatus* createCarStatus()
     return status;
 }
 
-//Function 6))
+/*
+Functiion mctrl6
+    Frees The memory of Car Status Information passed as prm; created by createCarStatus()
+*/
 void freeCarStatus(CarStatus* status)
 {
     if (status != NULL)
@@ -90,7 +111,13 @@ void freeCarStatus(CarStatus* status)
     free(status);
 }
 
-//Function 7))
+/*
+Functiion mctrl7
+    Dynamically Allocates Memory for for the car we are creating.
+    it contains fields that point to other DataTypes that are define within the prg.
+    N.B. **we also need to allocate memory for those DataTypes
+    Set the fields to NULL.
+*/
 Car* createCar(const char* brndnm, const char* brndmdl, 
 const char* trmlvl, const char* clr, int mkyr)
 {
@@ -117,7 +144,14 @@ const char* trmlvl, const char* clr, int mkyr)
     return newCar;
 }
 
-//Function 8))
+/*
+Functiion mctrl8
+    Frees The memory of Car Data-Type passed as prm; 
+    Also free's (Contained by the CAR)
+    -GeneralInformation; by freeGeneralInfo ()
+    -MechanicalInformation; by freeMechanicalInfo()
+    -CarStatus; by freeCarStatus()
+*/
 void freeCar (Car* car){
     if ( car == NULL)
         return;
@@ -127,7 +161,12 @@ void freeCar (Car* car){
     free(car);
 }
 
-//Function 9))
+/*
+Functiion mctrl9
+    Dynamically Allocates Memory for individual Car Node.
+    points the value of newCarNode to CAR*
+    Set the fields to NULL.
+*/
 CarNode* createCarNode (Car* car)
 {
     CarNode* newCarNode = (CarNode*)malloc(sizeof(CarNode));
@@ -145,7 +184,10 @@ CarNode* createCarNode (Car* car)
     return newCarNode;
 }
 
-//Function 10))
+/*
+Functiion mctrl10
+    Frees The memory of an Individual CarNode passed as prm; created by createCarStatus()
+*/
 void freeCarNode(CarNode* node)
 {
     if (node == NULL)
@@ -155,7 +197,12 @@ void freeCarNode(CarNode* node)
     
 }
 
-//Function 11))
+/*
+Functiion mctrl11
+    Dynamically Allocates Memory for A Car Car Inventory
+    N.B. **Put same Brand in one inventory
+    Sets the Head and Tail pointers to NULL.
+*/
 CarInventory* createCarInventory ()
 {
     CarInventory* inventory = (CarInventory*)malloc(sizeof(CarInventory));
@@ -173,7 +220,10 @@ CarInventory* createCarInventory ()
 
 }
 
-//Function 12)).
+/*
+Functiion mctrl12
+    Frees The memory of an Inventory (SameBrandCars) passed as prm; created by createCarStatus()
+*/
 void freeCarInventory(CarInventory* inventory)
 {
     if (inventory == NULL)
