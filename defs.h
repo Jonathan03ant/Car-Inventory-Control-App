@@ -67,6 +67,6 @@ void freeCarNode(CarNode*);
 CarInventory* createCarInventory ();
 void freeCarInventory(CarInventory*);
 
-void addCarToInventory (CarInventory*, Car*);
+void addCarToInventory (CarInventory*);
 
 void printCarInventory(CarInventory*);
