@@ -3,7 +3,10 @@
 #include <stdlib.h>
 #include "defs.h"
 
-
+/*
+Function util-1
+    Adds Car Nodes (Created from Car*) to an inventory (linked List_)
+*/
 void addCarToInventory(CarInventory* inventory, Car* car)
 {
     CarNode* newNode = createCarNode(car);
@@ -11,8 +14,7 @@ void addCarToInventory(CarInventory* inventory, Car* car)
     {
         printf("Failed to create newNode\n");
         return;
-    }
-    
+    }  
      //Add the Car to the Inventory.
      if (inventory->head == NULL)
      {
@@ -21,12 +23,35 @@ void addCarToInventory(CarInventory* inventory, Car* car)
      }
      else
      {
-        newNode->prev = inventory->tail;
         inventory->tail->next = newNode;
+        newNode->prev = inventory->tail;
         inventory->tail = newNode;
-     }
-    
-    
+     }    
+}
+
+/*
+Functiion util-2
+    Adds Car Inventories to our Storage (dynamic Array).
+    We have a single Storage to work with.
+*/
+void addInventoryToStorage(Storage** storage, CarInventory* inventory) {
+    // Increment the count
+    (*storage)->count++;
+
+    // Reallocate the storage to accommodate the additional inventories
+    CarInventory** resizedInventory = 
+    realloc((*storage)->inventory, sizeof(CarInventory*) * (*storage)->count);
+
+    if (resizedInventory == NULL) {
+        printf("ALLOCATION FAILED\n");
+        return;
+    }
+
+    // Update the storage with the new resized storage
+    (*storage)->inventory = resizedInventory;
+
+    // Add the inventory to the storage
+    (*storage)->inventory[(*storage)->count - 1] = inventory;
 }
 
 
@@ -46,7 +71,7 @@ void printCarInventory(CarInventory* inventory)
         Car* car = currNode->data;
         GeneralInfo* generalInfo = car->generalInfo;
 
-         printf("%-15s%-15s%-15s%-15s%d\n",
+        printf("%-15s%-15s%-15s%-15s%d\n",
             generalInfo->brandName,
             generalInfo->brandModel,
             generalInfo->trimLevel,
@@ -55,10 +80,20 @@ void printCarInventory(CarInventory* inventory)
         );
 
         currNode = currNode->next;
-
     }
-
+    printf("\n");
 }
+
+void printCarStorage (Storage* storage)
+{
+    printf("Car Storage:\n\n");
+    for (int i = 0; i <storage->count; i++)
+    {
+        printf("Inventory %d: %s\n", i + 1, storage->inventory[i]->inventoryName);
+    }
+printf("Note, to print a specific inventory, use The appropriate function.\n ");
+}
+
 
 
 

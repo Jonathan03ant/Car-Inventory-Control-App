@@ -16,6 +16,7 @@ typedef struct
     char* carType; 
     char* engineSize;
     char* engineType;
+    int HP;
 }MechanicalInfo;
 
 typedef struct 
@@ -41,9 +42,20 @@ typedef struct CarNode
 
 typedef struct 
 {
+    char* inventoryName;
     CarNode* head;
     CarNode* tail;    
 } CarInventory;
+
+typedef struct Storage
+{
+    /*
+        Each element in the inventory is a pointer to a separate Inventory.
+    */
+    CarInventory** inventory; 
+    int count;
+    int cap;
+}Storage;
 
 /*
     Initializing Function ProtoTypes
@@ -58,15 +70,20 @@ void freeMechanicalInfo (MechanicalInfo*);
 CarStatus* createCarStatus ();
 void freeCarStatus(CarStatus*);
 
-Car* createCar(const char*, const char*, const char*, const char*, int);
+Car* createCar(const char*, const char*, const char*, const char*, int); 
 void freeCar (Car*);
 
 CarNode* createCarNode (Car*);
 void freeCarNode(CarNode*);
 
-CarInventory* createCarInventory ();
+CarInventory* createCarInventory (const char*);
 void freeCarInventory(CarInventory*);
 
-void addCarToInventory (CarInventory*);
+Storage* createCarStorage ();
+void freeCarStorage (Storage*);
+
+void addCarToInventory (CarInventory*, Car*);
+void addInventoryToStorage (Storage**, CarInventory*);
 
 void printCarInventory(CarInventory*);
+void printCarStorage (Storage*);

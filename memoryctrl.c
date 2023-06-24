@@ -61,6 +61,7 @@ MechanicalInfo* createMechanicalInfo()
     info->carType = NULL;
     info->engineSize = NULL;
     info->engineType = NULL;
+    info->HP = 0;
 
     return info;
 }
@@ -72,8 +73,10 @@ Functiion mctrl4
 void freeMechanicalInfo (MechanicalInfo* info)
 {
     if (info == NULL)
+    {
         return;
-    free(info);
+        free(info);
+    }
 }
 
 /*
@@ -106,7 +109,7 @@ Functiion mctrl6
 */
 void freeCarStatus(CarStatus* status)
 {
-    if (status != NULL)
+    if (status == NULL)
         return;
     free(status);
 }
@@ -203,7 +206,7 @@ Functiion mctrl11
     N.B. **Put same Brand in one inventory
     Sets the Head and Tail pointers to NULL.
 */
-CarInventory* createCarInventory ()
+CarInventory* createCarInventory (const char* name)
 {
     CarInventory* inventory = (CarInventory*)malloc(sizeof(CarInventory));
     if (inventory == NULL)
@@ -213,11 +216,11 @@ CarInventory* createCarInventory ()
     }
     
     //Initializing The Inventory
+    inventory->inventoryName = strdup(name);
     inventory->head = NULL;
     inventory->tail = NULL;
 
     return inventory;
-
 }
 
 /*
@@ -228,6 +231,7 @@ void freeCarInventory(CarInventory* inventory)
 {
     if (inventory == NULL)
         return;
+
     CarNode* currNode = inventory->head;
     while (currNode != NULL)
     {
@@ -235,5 +239,52 @@ void freeCarInventory(CarInventory* inventory)
         freeCarNode(currNode);
         currNode = nextNode;
     }
-    free(inventory);
+    inventory->head = NULL; // Reset the head pointer to NULL
+    inventory->tail = NULL;
+    
+    
+}
+
+/*
+Functiion mctrl13
+    Dynamically allocates a memory for a Storage which will hold all possible inventories.
+    Typically, we will only work with single Storage to manage multiple inventories.
+*/
+Storage* createCarStorage ()
+{
+    Storage* newStorage = (Storage*) malloc (sizeof(Storage));
+    if (newStorage == NULL)
+    {
+        printf("ALLOCATION FAILED\n");
+        return NULL;
+    }
+    
+    newStorage->inventory = (CarInventory**) malloc (sizeof(CarInventory*));
+    if (newStorage->inventory == NULL)
+    {
+        printf("ALLOCATION FAILED\n");
+        free(newStorage);
+        return NULL;
+    }
+
+    newStorage->count = 0;
+    return newStorage;
+}
+
+/*
+Functiion mctrl13
+    Frees The memory of a car Storage which contains Car Inventories
+    Car Inventories holds car Instances. 
+*/
+void freeCarStorage(Storage* storage) {
+    if (storage == NULL)
+        return;
+
+    for (int i = 0; i < storage->count; i++) 
+    {
+        freeCarInventory(storage->inventory[i]);
+    }
+
+    free(storage->inventory);
+    free(storage);
 }
