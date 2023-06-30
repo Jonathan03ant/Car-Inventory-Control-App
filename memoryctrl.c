@@ -121,8 +121,7 @@ Functiion mctrl7
     N.B. **we also need to allocate memory for those DataTypes
     Set the fields to NULL.
 */
-Car* createCar(const char* brndnm, const char* brndmdl, 
-const char* trmlvl, const char* clr, int mkyr)
+Car* createCar(GeneralInfo* generalInfo, MechanicalInfo* mechanicalInfo, CarStatus* carStatus)
 {
     Car* newCar = (Car*)malloc(sizeof(Car));
 
@@ -133,16 +132,9 @@ const char* trmlvl, const char* clr, int mkyr)
     }
 
     //Initializing General Info
-    newCar->generalInfo = createGeneralInfo();
-    newCar->generalInfo->brandName = strdup(brndnm);
-    newCar->generalInfo->brandModel = strdup(brndmdl);
-    newCar->generalInfo->trimLevel = strdup(trmlvl);
-    newCar->generalInfo->color = strdup(clr);
-    newCar->generalInfo->makeYear = mkyr;
-
-
-    newCar->mechanicalInfo = createMechanicalInfo();
-    newCar->carStatus = createCarStatus();
+    newCar->generalInfo = generalInfo;
+    newCar->mechanicalInfo = mechanicalInfo;
+    newCar->carStatus = carStatus;
 
     return newCar;
 }

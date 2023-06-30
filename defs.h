@@ -70,7 +70,7 @@ void freeMechanicalInfo (MechanicalInfo*);
 CarStatus* createCarStatus ();
 void freeCarStatus(CarStatus*);
 
-Car* createCar(const char*, const char*, const char*, const char*, int); 
+Car* createCar(GeneralInfo*, MechanicalInfo*, CarStatus*); 
 void freeCar (Car*);
 
 CarNode* createCarNode (Car*);
@@ -87,3 +87,9 @@ void addInventoryToStorage (Storage**, CarInventory*);
 
 void printCarInventory(CarInventory*);
 void printCarStorage (Storage*);
+
+GeneralInfo* createGeneralInfoFromTokens(char**);
+MechanicalInfo* createMechanicalInfoFromTokens(char** );
+CarStatus* createCarStatusFromTokens(char**);
+void populateInventoryFromData(const char*, CarInventory*);
+

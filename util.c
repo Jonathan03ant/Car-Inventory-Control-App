@@ -89,7 +89,7 @@ void printCarStorage (Storage* storage)
     printf("Car Storage:\n\n");
     for (int i = 0; i <storage->count; i++)
     {
-        printf("Inventory %d: %s\n", i + 1, storage->inventory[i]->inventoryName);
+        printf("Inventory %d: %s Inventory\n", i + 1, storage->inventory[i]->inventoryName);
     }
 printf("Note, to print a specific inventory, use The appropriate function.\n ");
 }

@@ -1,0 +1,9 @@
+Brand,Model,Trim,Color,Year,Size,Type,EngineSize,EngineType,Horsepower,Status,Odo,Condition,RentalCustomers
+Hyundai,Elantra,SE,White,2017,SEDAN,ECO,INLINE-4,ICU,147,AVAILABLE,67000,8,""
+Honda,Civic,EX,Gray,2017,SEDAN,SPORT,INLINE-4,ICU,158,RENTED,83000,7,"Emily Brown"
+Toyota,Camry,XLE,Red,2018,SEDAN,SPORT,V6,ICU,301,RENTED,55000,9,"Sarah Davis"
+Chevrolet,Impala,LT,Black,2019,SEDAN,SPORT,V6,ICU,305,AVAILABLE,72000,8,""
+Ford,Focus,SE,Blue,2017,SEDAN,ECO,INLINE-4,ICU,123,RENTED,48000,9,"Michael Johnson"
+Nissan,Altima,S,Gray,2018,SEDAN,SPORT,V6,ICU,270,AVAILABLE,92000,7,""
+Toyota,Rav4,LE,Silver,2017,SUV,SPORT,INLINE-4,ICU,176,AVAILABLE,68000,8,""
+Honda,CR-V,LX,White,2019,SUV,SPORT+,INLINE-4,ICU,190,RENTED,78000,7,"Daniel Wilson"
