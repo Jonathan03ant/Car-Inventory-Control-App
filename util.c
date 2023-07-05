@@ -91,10 +91,88 @@ void printCarStorage (Storage* storage)
     {
         printf("Inventory %d: %s Inventory\n", i + 1, storage->inventory[i]->inventoryName);
     }
-printf("Note, to print a specific inventory, use The appropriate function.\n ");
+    printf("\n");
 }
 
 
 
+/*
+*/
 
+void printInventoryByCriteria (const CarInventory* inventory, const char* field, const char* value)
+{
+    printf("Printing Car Inventor- Filtered by\nField: %s\nValue: %s\n\n", field, value);
+    printf("%-15s%-15s%-15s%-15s%-10s\n",
+        "BRAND NAME",
+        "BRAND MODEL",
+        "BRAND TRIM",
+        "BRAND COLOR",
+        "MKYR"
+    );
+
+    CarNode* current = inventory->head;
+    while (current !=NULL)
+    {
+        Car* car = current->data;
+        
+        /*
+        Field Matching
+        */
+        int fieldMatch = 0;
+
+        /*
+        General Information
+        */
+
+        if ((strcmp (field, "brandName") == 0) && (strcmp(value, car->generalInfo->brandName) == 0))
+            fieldMatch = 1;
+        else if ((strcmp(field, "brandModel") == 0) && (strcmp(value, car->generalInfo->brandModel) == 0))
+            fieldMatch = 1;
+        else if ((strcmp(field, "trimLevel") == 0) && (strcmp(value, car->generalInfo->trimLevel) == 0))
+            fieldMatch = 1;
+        else if ((strcmp(field, "color") == 0) && (strcmp(value, car->generalInfo->color) == 0))
+            fieldMatch = 1;
+        else if ((strcmp(field, "makeYear") == 0) && (atoi(value) == car->generalInfo->makeYear))
+            fieldMatch = 1;
+        
+        /*
+        Mechanical Information, continued
+        */
+        else if ((strcmp (field, "size") == 0) && (strcmp(value, car->mechanicalInfo->carSize) == 0))
+            fieldMatch = 1;
+        else if ((strcmp (field, "type") == 0) && (strcmp(value, car->mechanicalInfo->carType) == 0))
+            fieldMatch = 1;
+        else if ((strcmp (field, "engineSize") == 0) && (strcmp(value, car->mechanicalInfo->engineSize) == 0))
+            fieldMatch = 1;
+        else if ((strcmp (field, "engineType") == 0) && (strcmp(value, car->mechanicalInfo->engineType) == 0))
+            fieldMatch = 1;
+        else if ((strcmp(field, "HP") == 0) && (atoi(value) == car->mechanicalInfo->HP)== 0)
+            fieldMatch = 1;
+        
+        /*
+        Mechanical Information, continued
+        */
+        else if ((strcmp(field, "status") == 0) && (strcmp(car->carStatus->status, value) == 0)) 
+            fieldMatch = 1;
+        else if ((strcmp(field, "odo") == 0) && (atoi(value) == car->carStatus->odo))
+            fieldMatch = 1;
+        else if ((strcmp(field, "condition") == 0) && (atoi(value) == car->carStatus->condition)) 
+            fieldMatch = 1;
+
+        /*
+        Printing Based On field Match
+        */
+
+        if (fieldMatch) 
+        {
+            printf("%-15s%-15s%-15s%-15s%d\n",
+            car->generalInfo->brandName,
+            car->generalInfo->brandModel,
+            car->generalInfo->trimLevel,
+            car->generalInfo->color,
+            car->generalInfo->makeYear);
+        }
+        current = current->next;
+    }
+}
 

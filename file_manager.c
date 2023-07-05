@@ -37,39 +37,61 @@ CarStatus* createCarStatusFromTokens(char** tokens)
 }
 
 
-void populateInventoryFromData(const char* filename, CarInventory* inventory) {
-    FILE* file = fopen(filename, "r");
-    if (file == NULL) {
-        printf("Error opening file: %s\n", filename);
-        return;
+void populateInventoryFromCSV(const char* filename, CarInventory* inventory) 
+{
+    /*
+        Open a file to read in csv
+        file name is csvfile
+        check error handling 
+    */
+    FILE* csvfile = fopen(filename, "r");
+    if (csvfile == NULL) 
+    {
+        printf("Error Opening the file %s\n", filename);
+        
     }
 
-    char* line = NULL;
-    size_t lineBufferSize = 0;
+    /*
+        Now we have read the file and is in csvfile,
+        we can use a char pointer to read each line.
+        we need getline()
+    */
 
-    getline(&line, &lineBufferSize, file); // Read and discard the first line
+    char* lineBuffer = NULL;
+    size_t linesize = 0;
 
-    while (getline(&line, &lineBufferSize, file) != -1) {
-        line[strcspn(line, "\n")] = '\0'; // Remove trailing newline character
+    getline(&lineBuffer, &linesize, csvfile);
+    while (getline(&lineBuffer, &linesize, csvfile) != -1) 
+    {
+        /*
+            Now we need need to store our fields
+            separately using the delimeter. 
+        */
 
-        char* tokens[14];
-        char* token = strtok(line, ",");
-        int tokenIndex = 0;
-        while (token != NULL && tokenIndex < 14) {
-            tokens[tokenIndex] = token;
-            token = strtok(NULL, ",");
-            tokenIndex++;
+        char* field[14];
+        /*
+            allFields now contains the line buffer
+        */
+        char* allFields = strtok(lineBuffer, ",");
+        int fieldIndex = 0;
+        while (allFields != NULL && fieldIndex < 14) {
+            field[fieldIndex] = allFields;
+            allFields = strtok(NULL, ",");
+            fieldIndex++;
         }
 
-        GeneralInfo* generalInfo = createGeneralInfoFromTokens(tokens);
-        MechanicalInfo* mechanicalInfo = createMechanicalInfoFromTokens(tokens);
-        CarStatus* carStatus = createCarStatusFromTokens(tokens);
+        // Create the car and add it to the inventory
+        GeneralInfo* generalInfo = createGeneralInfoFromTokens(field);
+        MechanicalInfo* mechanicalInfo = createMechanicalInfoFromTokens(field);
+        CarStatus* carStatus = createCarStatusFromTokens(field);
         Car* car = createCar(generalInfo, mechanicalInfo, carStatus);
 
         addCarToInventory(inventory, car); // Add the car to the inventory
     }
 
-    free(line);
-    fclose(file);
+    free(lineBuffer);
+    fclose(csvfile);
 }
 
+
+        

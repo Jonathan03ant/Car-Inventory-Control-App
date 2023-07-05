@@ -50,7 +50,7 @@ typedef struct
 typedef struct Storage
 {
     /*
-        Each element in the inventory is a pointer to a separate Inventory.
+        Each element in the storage is a pointer to a separate Inventory.
     */
     CarInventory** inventory; 
     int count;
@@ -87,9 +87,10 @@ void addInventoryToStorage (Storage**, CarInventory*);
 
 void printCarInventory(CarInventory*);
 void printCarStorage (Storage*);
+void printInventoryByCriteria (const CarInventory*, const char*, const char*);
 
 GeneralInfo* createGeneralInfoFromTokens(char**);
 MechanicalInfo* createMechanicalInfoFromTokens(char** );
 CarStatus* createCarStatusFromTokens(char**);
-void populateInventoryFromData(const char*, CarInventory*);
+void populateInventoryFromCSV(const char*, CarInventory*);
 

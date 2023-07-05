@@ -6,17 +6,22 @@
 
 int main()
 {
-  
     Storage* storage = createCarStorage();
     CarInventory* inventory = createCarInventory("Main Inventory");
 
-    populateInventoryFromData("cars.csv", inventory); // Populate the cars from the CSV file
+    populateInventoryFromCSV("cars.csv", inventory); // Populate the cars from the CSV file
 
     addInventoryToStorage(&storage, inventory); // Add the inventory to the storage
 
     printCarStorage(storage); 
-    printCarInventory(inventory);
+    //
+    
+    printInventoryByCriteria(inventory, "color", "Blue");
+    printInventoryByCriteria(inventory, "type", "ECO");
+    printInventoryByCriteria(inventory, "makeYear", "2021");
 
+    freeCarStorage(storage);
+    freeCarInventory(inventory);
     return 0;
 }
 
