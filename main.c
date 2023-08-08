@@ -23,6 +23,9 @@ int main()
     freeCarStorage(storage);
     freeCarInventory(inventory);
     return 0;
+    /*
+        END 
+    */
 }
 
    

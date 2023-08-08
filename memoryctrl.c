@@ -14,7 +14,7 @@ GeneralInfo* createGeneralInfo()
 
     if (info == NULL)
     {
-        printf("ALLOCATION FAILED!!\n");
+        printf("ALLOCATION FAILED!! 'Error_mctrl1'\n");
         
         return NULL;
     }
@@ -53,7 +53,7 @@ MechanicalInfo* createMechanicalInfo()
 
     if (info == NULL)
     {
-        printf("ALLOCATION FAILED!!\n");
+        printf("ALLOCATION FAILED!! Error_mctrl3\n");
     }
 
     //Initializing The Fields
@@ -90,7 +90,7 @@ CarStatus* createCarStatus()
 
     if (status == NULL)
     {
-        printf("ALLOCATION FAILED!!\n");
+        printf("ALLOCATION FAILED!! Error_mctrl5\n");
         return NULL;   
     }
 
@@ -127,7 +127,7 @@ Car* createCar(GeneralInfo* generalInfo, MechanicalInfo* mechanicalInfo, CarStat
 
     if (newCar == NULL)
     {
-        printf("ALLOCATION FAILED!!\n");
+        printf("ALLOCATION FAILED!! Error_mctrl7\n");
         return NULL;   
     }
 
@@ -167,7 +167,7 @@ CarNode* createCarNode (Car* car)
     CarNode* newCarNode = (CarNode*)malloc(sizeof(CarNode));
     if (newCarNode == NULL)
     {
-        printf("ALLOCATION FAILED!!\n");
+        printf("ALLOCATION FAILED!! Error_mctrl9\n");
         return NULL;   
     }
 
