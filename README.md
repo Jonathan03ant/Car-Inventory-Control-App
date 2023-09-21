@@ -1,1 +1,2 @@
 # Car-Inventory-Control-App
+This repository contains a simple Car Inventory Tracker application written in C. The application allows users to manage and track information about various cars, including their general information, mechanical details, and status. This was an early self-study project for my first Systems Programming (COMP2401-Introduction to Systems Programing in C) class on Summer 2023.
