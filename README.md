@@ -2,7 +2,7 @@
 This repository contains a simple Car Inventory Tracker application written in C. The application allows users to manage and track information about various cars, including their General Information, Mechanical details, and Status. This was an early self-study project for my first Systems Programming (COMP2401-Introduction to Systems Programing in C) class on Summer 2023.
 
 ## Features
-**A dding Cars:** Add new cars to the inventory with their general details, mechanical information, and status.
+**Adding Cars:** Add new cars to the inventory with their general details, mechanical information, and status.
 
 **Viewing Inventory:** Display the entire inventory or filter it based on specific criteria such as brand name, model, or color.
 
